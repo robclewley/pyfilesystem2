@@ -332,8 +332,10 @@ class Globber(object):
             search=search,
             exclude_dirs=self.exclude_dirs,
         ):
-            if info.is_dir:
-                path += "/"
+            # Removing this addition which prevents sub-directories of self.path
+            # from showing in the yielded results
+            #if info.is_dir:
+            #    path += "/"
             if re_pattern.match(path):
                 yield GlobMatch(path, info)
 
